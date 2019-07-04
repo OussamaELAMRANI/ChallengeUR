@@ -1,6 +1,7 @@
 <?php
 
 /** @var \Illuminate\Database\Eloquent\Factory $factory */
+
 use App\User;
 use Illuminate\Support\Str;
 use Faker\Generator as Faker;
@@ -21,6 +22,11 @@ $factory->define(User::class, function (Faker $faker) {
         'name' => $faker->name,
         'email' => $faker->unique()->safeEmail,
         'password' => bcrypt('secret'), // password
+
+        'address' => $faker->address,
+        'latitude' => $faker->latitude,
+        'longitude' => $faker->longitude,
+
         'remember_token' => Str::random(10),
     ];
 });

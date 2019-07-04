@@ -4,36 +4,36 @@ import Router from 'vue-router';
 Vue.use(Router);
 
 export const constantRoutes = [
-	{
-		path: '/',
-		hidden: true,
-		redirect: '/login'
-	},
-	{
-		path: '/login',
-		component: () => import("@/pages/Login"),
-		hidden: true,
-	},
-	{
-		path: '/404',
-		hidden: true,
-		name: 'notFound',
-		component: () => import('@/pages/Errors/NotFound'),
-	},
+    {
+        path: '/',
+        hidden: true,
+        redirect: '/login'
+    },
+    {
+        path: '/login',
+        component: () => import("@/pages/Auth/UserAuth"),
+        hidden: true,
+    },
+    {
+        path: '/404',
+        hidden: true,
+        name: 'notFound',
+        component: () => import('@/pages/Errors/NotFound'),
+    },
 ];
 
 const createRouter = () => new Router({
-	mode: 'history', // require service support
-	scrollBehavior: () => ({y: 0}),
-	routes: constantRoutes,
+    mode: 'history', // require service support
+    scrollBehavior: () => ({y: 0}),
+    routes: constantRoutes,
 });
 
 const router = createRouter();
 
 // Detail see: https://github.com/vuejs/vue-router/issues/1234#issuecomment-357941465
 export function resetRouter() {
-	const newRouter = createRouter();
-	router.matcher = newRouter.matcher; // reset router
+    const newRouter = createRouter();
+    router.matcher = newRouter.matcher; // reset router
 }
 
 export default router;

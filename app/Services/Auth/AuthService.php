@@ -18,9 +18,9 @@ class AuthService
      */
     public function signUp(Request $req)
     {
-        $credentials = $req->only(['name', 'email', 'password']);
-        User::create($credentials);
+        $newUser = $req->only(['name', 'email', 'password', 'address', 'lat', 'lng']);
 
+        User::create($newUser);
         return $this->response(['message' => 'Successful added !'], 201);
     }
 

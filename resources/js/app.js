@@ -8,13 +8,27 @@ import router from '@/routes'
 import store from './store'
 //
 import VeeValidate from 'vee-validate';
-// import VueNotification from "@kugatsu/vuenotification";
+
+import VueNotification from "@kugatsu/vuenotification";
 
 
 /**
  * Plug all Plugins
  */
-Vue.use(VeeValidate);
-// Vue.use(VueNotification, {timer: 20});
+const vee_config = {
+    aria: true,
+    classNames: {},
+    classes: false,
+    delay: 500,
+    dictionary: null,
+    errorBagName: 'errors', // change if property conflicts
+    events: 'input|blur',
+    fieldsBagName: 'fields',
+    locale: 'en',
+    validity: false,
+    useConstraintAttrs: true
+};
+Vue.use(VeeValidate, vee_config);
+Vue.use(VueNotification, {timer: 20});
 
 new Vue(Vue.util.extend({router, store}, App)).$mount('#app');

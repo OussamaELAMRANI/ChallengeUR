@@ -19,6 +19,11 @@ class CreateUsersTable extends Migration
             $table->string('email')->unique();
 //            $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
+
+            $table->text('address');
+            $table->integer('lat'); //  Latitude: -85 to +85 (actually -85.05115 for some reason !)
+            $table->integer('lng'); // Longitude: -180 to +180
+
             $table->rememberToken();
             $table->timestamps();
         });
