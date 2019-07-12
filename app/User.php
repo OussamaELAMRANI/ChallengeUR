@@ -2,6 +2,9 @@
 
 namespace App;
 
+use App\Services\Filters\Shop\ShopFilter;
+use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Http\Request;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -31,5 +34,15 @@ class User extends Authenticatable
         static::creating(function ($user) {
             $user->password = bcrypt($user->password);
         });
+    }
+
+    public function scopeFilter(Builder $builder, Request $req, array $filters = [])
+    {
+        return (new ShopFilter($req))->add($filters)->filter($builder);
+    }
+
+    public function shops()
+    {
+        return $this->belongsToMany(Shop::class, Like::class)->withPivot('like');
     }
 }

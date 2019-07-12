@@ -36,7 +36,7 @@
     import {mapActions} from 'vuex'
 
     export default {
-        name: "SignUp.vue",
+        name: "SignUp",
         data() {
             return {
                 address: {},

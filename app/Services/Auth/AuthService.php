@@ -54,7 +54,7 @@ class AuthService
     public function userInfos(Request $request)
     {
         $user = $request->user();
-        return $this->response([$user], 200);
+        return $this->response($user, 200);
     }
 
 
@@ -84,7 +84,7 @@ class AuthService
      * @param int $status
      * @return \Illuminate\Http\JsonResponse
      */
-    public function response(array $message, int $status)
+    public function response($message, int $status)
     {
         return response()->json($message, $status);
     }

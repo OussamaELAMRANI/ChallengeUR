@@ -42,8 +42,7 @@
                 this.signIn(this.user)
                     .then(() => {
                         this.$notification.success("is Connected !");
-
-                        this.$router.push('/login')
+                        this.$router.push('/shops')
                     })
                     .catch(err => {
                         console.log(err)

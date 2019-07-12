@@ -3,6 +3,37 @@ import Router from 'vue-router';
 
 Vue.use(Router);
 
+export const asyncRoutes = [
+    {
+        path: '/shops',
+        redirect: '/shops/nearby',
+        component: () => import("@/pages/Shops/Shops"),
+
+        children: [
+            {
+                path: 'nearby',
+                name: 'nearby',
+                component: () => import("@/pages/Shops/NearbyShops"),
+                meta: {
+                    title: 'Nearby Shops', icon: 'fa fa-map-marker'
+                },
+                hidden: false,
+            },
+            {
+                path: 'favorite',
+                name: 'favorite',
+                component: () => import("@/pages/Shops/FavoriteShops"),
+                meta: {
+                    title: 'My Preferred Shops', icon: 'fa fa-heart'
+                },
+                hidden: false,
+            },
+        ],
+    },
+
+    {path: '*', redirect: '/404', hidden: true},
+]
+
 export const constantRoutes = [
     {
         path: '/',
@@ -12,14 +43,21 @@ export const constantRoutes = [
     {
         path: '/login',
         component: () => import("@/pages/Auth/UserAuth"),
+        meta: {
+            title: 'Login', icon: 'fa fa-heart'
+        },
         hidden: true,
     },
     {
         path: '/404',
         hidden: true,
         name: 'notFound',
+        meta: {
+            title: 'Not Found | Error', icon: 'fa fa-heart'
+        },
         component: () => import('@/pages/Errors/NotFound'),
     },
+    // ...asyncRoutes
 ];
 
 const createRouter = () => new Router({

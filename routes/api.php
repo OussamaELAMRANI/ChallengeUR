@@ -15,3 +15,19 @@ Route::prefix('auth')->group(function () {
     });
 
 });
+
+Route::prefix('stores')->group(function () {
+
+
+    Route::group(['middleware' => 'auth:api'], function () {
+
+        Route::get('nearby', 'Api\ShopController@nearby');
+        Route::get('favorite', 'Api\ShopController@favorite');
+        Route::post('like', 'Api\ShopController@like');
+
+        Route::delete('', 'Api\ShopController@detachShop');
+
+    });
+
+
+});

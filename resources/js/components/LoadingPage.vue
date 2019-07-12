@@ -1,6 +1,6 @@
 <template lang="pug">
     #loading_page
-        half-circle-spinner(color="#f83896", :size="30")
+        half-circle-spinner(color="#f83896", :size="size")
 </template>
 
 <script>
@@ -8,6 +8,11 @@
 
     export default {
         name: "LoadingPage",
+        props: {
+            size: {
+                default: 30
+            }
+        },
         components: {HalfCircleSpinner}
     }
 </script>

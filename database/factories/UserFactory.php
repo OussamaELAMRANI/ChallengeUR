@@ -24,8 +24,8 @@ $factory->define(User::class, function (Faker $faker) {
         'password' => bcrypt('secret'), // password
 
         'address' => $faker->address,
-        'latitude' => $faker->latitude,
-        'longitude' => $faker->longitude,
+        'lat' => $faker->latitude,
+        'lng' => $faker->longitude,
 
         'remember_token' => Str::random(10),
     ];

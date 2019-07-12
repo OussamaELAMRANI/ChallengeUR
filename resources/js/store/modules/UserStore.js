@@ -4,7 +4,7 @@ import {getToken, setToken, removeToken, expireToken, getExpireTime} from '@/uti
 const state = {
     token: getToken(),
     expired_at: getExpireTime(),
-    user: {}
+    user: null
 };
 
 // Setter of this state
@@ -58,7 +58,6 @@ const actions = {
             .then(res => {
                 // Clear storage
                 commit('SET_TOKEN', '');
-                commit('SET_ROLES', []);
                 commit('SET_USER', {});
                 removeToken();
 
@@ -69,12 +68,10 @@ const actions = {
 
     userInfos({commit, state}) {
         const token = `Bearer ${state.token}`;
+        // get Token form Cookies to make AJAX request
+        axios.defaults.headers.common['Authorization'] = token
 
-        return axios.get('/api/auth/user', {
-            headers: {
-                'Authorization': token,
-            }
-        })
+        return axios.get('/api/auth/user')
             .then(res => {
                 const {data} = res;
 
@@ -89,7 +86,7 @@ const actions = {
     resetToken({commit}) {
         return new Promise(resolve => {
             commit('SET_TOKEN', '');
-            commit('SET_ROLES', []);
+            // commit('SET_ROLES', []);
             commit('SET_USER', {});
 
             removeToken();

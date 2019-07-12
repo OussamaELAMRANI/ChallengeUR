@@ -6,6 +6,8 @@ import App from './run'
 // Local
 import router from '@/routes'
 import store from './store'
+import '@/permission'; // permission control
+
 //
 import VeeValidate from 'vee-validate';
 
@@ -29,6 +31,6 @@ const vee_config = {
     useConstraintAttrs: true
 };
 Vue.use(VeeValidate, vee_config);
-Vue.use(VueNotification, {timer: 20});
+Vue.use(VueNotification, {timer: 20, showCloseIcn: true});
 
 new Vue(Vue.util.extend({router, store}, App)).$mount('#app');
